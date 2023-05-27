@@ -1,8 +1,5 @@
 @file:Suppress("UnstableApiUsage")
 
-include(":core")
-
-
 pluginManagement {
     repositories {
         gradlePluginPortal()
@@ -10,6 +7,7 @@ pluginManagement {
         mavenCentral()
     }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -18,5 +16,8 @@ dependencyResolutionManagement {
         maven { url =  uri("https://jitpack.io") }
     }
 }
+
 rootProject.name = "StoryApp"
 include(":app")
+include(":core")
+include(":auth")

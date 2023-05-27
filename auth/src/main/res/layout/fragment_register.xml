@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".register.RegisterFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_login"
+            android:layout_width="240dp"
+            android:layout_height="@dimen/_170sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/register" />
+
+        <TextView
+            android:id="@+id/tv_login_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/register_header"
+            android:textStyle="bold"
+            android:textSize="@dimen/_25ssp"
+            app:layout_constraintStart_toStartOf="@id/gd_start"
+            app:layout_constraintEnd_toEndOf="@id/gd_end"
+            app:layout_constraintTop_toBottomOf="@+id/img_login" />
+
+        <TextView
+            android:id="@+id/tv_register_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/register_message"
+            app:layout_constraintEnd_toEndOf="@id/gd_end"
+            app:layout_constraintStart_toStartOf="@id/gd_start"
+            app:layout_constraintTop_toBottomOf="@+id/tv_login_title" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_fullname"
+            android:layout_marginTop="@dimen/_24sdp"
+            app:layout_constraintEnd_toEndOf="@id/gd_end"
+            app:layout_constraintStart_toStartOf="@id/gd_start"
+            app:layout_constraintTop_toBottomOf="@id/tv_register_desc"
+            android:alpha="0"
+            style="@style/PrimaryTextInputLayout"
+            tools:alpha="1">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_register_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:hint="@string/full_name"
+                android:textCursorDrawable="@drawable/sh_cursor_edittext"
+                tools:ignore="RtlSymmetry" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_register_email"
+            android:layout_marginTop="@dimen/_4sdp"
+            app:layout_constraintEnd_toEndOf="@id/gd_end"
+            app:layout_constraintStart_toStartOf="@id/gd_start"
+            app:layout_constraintTop_toBottomOf="@id/til_fullname"
+            android:alpha="0"
+            style="@style/primaryButtonStyle"
+            tools:alpha="1">
+
+            <com.albro.storyapp.core.common.ui.EmailEditText
+                android:id="@+id/ed_register_email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:hint="@string/email"
+                android:textCursorDrawable="@drawable/sh_cursor_edittext"
+                tools:ignore="RtlSymmetry" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_register_password"
+            android:layout_marginTop="@dimen/_4sdp"
+            app:layout_constraintEnd_toEndOf="@id/gd_end"
+            app:layout_constraintStart_toStartOf="@id/gd_start"
+            app:layout_constraintTop_toBottomOf="@id/til_register_email"
+            android:alpha="0"
+            style="@style/primaryButtonStyle"
+            tools:alpha="1" >
+
+            <com.albro.storyapp.core.common.ui.PasswordEditText
+                android:id="@+id/ed_register_password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"
+                android:hint="@string/password"
+                android:maxLines="1"
+                android:textCursorDrawable="@drawable/sh_cursor_edittext"
+                tools:ignore="RtlSymmetry" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_register"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:text="@string/register"
+            android:alpha="0"
+            app:layout_constraintEnd_toEndOf="@id/gd_end"
+            app:layout_constraintStart_toStartOf="@id/gd_start"
+            app:layout_constraintTop_toBottomOf="@id/til_register_password"
+            tools:ignore="DuplicateSpeakableTextCheck"
+            style="@style/primaryButtonStyle"
+            tools:alpha="1" />
+
+        <LinearLayout
+            android:id="@+id/ll_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginBottom="32dp"
+            android:padding="8dp"
+            android:alpha="0"
+            app:layout_constraintTop_toBottomOf="@id/btn_register"
+            app:layout_constraintEnd_toEndOf="@id/gd_end"
+            app:layout_constraintStart_toStartOf="@id/gd_start"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:alpha="1" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/already_have_an_account"
+                />
+
+            <TextView
+                android:id="@+id/tv_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/login"
+                android:textStyle="bold"
+                android:textColor="@color/md_theme_light_onErrorContainer"
+                 />
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gd_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/_20sdp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gd_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/_20sdp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

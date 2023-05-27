@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="story_app">Story App</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="loading">Loading…</string>
+    <string name="invalid_email">Email invalid!</string>
+    <string name="invalid_password">Password invalid!</string>
+    <string name="error">Sorry, occur some error.</string>
+</resources>

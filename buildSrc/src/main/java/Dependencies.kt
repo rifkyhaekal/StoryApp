@@ -124,4 +124,12 @@ object Dependencies {
         const val roomKtx = "androidx.room:room-ktx:${Versions.ROOM_VERSION}"
         const val roomPaging = "androidx.room:room-paging:${Versions.ROOM_VERSION}"
     }
+
+    object Error {
+        const val guava = "com.google.guava:guava:27.0.1-android"
+    }
+
+    object Logging {
+        const val timber = "com.jakewharton.timber:timber:4.7.1"
+    }
 }

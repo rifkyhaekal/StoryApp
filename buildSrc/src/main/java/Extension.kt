@@ -8,6 +8,7 @@ import org.gradle.api.artifacts.dsl.DependencyHandler
  */
 fun DependencyHandler.commonAndroidLibrary() {
     api(Dependencies.Core.appCompat)
+    implementation(Dependencies.Error.guava)
     implementation(Dependencies.Core.coreKtx)
     implementation(Dependencies.UiCore.material)
     implementation(Dependencies.UiCore.constraintLayout)
@@ -38,6 +39,7 @@ fun DependencyHandler.commonAndroidLibrary() {
     implementation(Dependencies.Lifecycle.viewmodelKtx)
     implementation(Dependencies.Lifecycle.viewmodelSavedState)
     implementation(Dependencies.Testing.espressoIdling)
+    implementation(Dependencies.Logging.timber)
     testImplementation(Dependencies.Testing.junit)
     testImplementation(Dependencies.Testing.mockitoCore)
     testImplementation(Dependencies.Testing.mockitoInline)

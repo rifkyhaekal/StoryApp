@@ -23,6 +23,6 @@ object Versions {
     const val OKHTTP_VERSION = "4.10.0"
     const val MOCKITO_VERSION = "3.12.4"
 
-    const val HILT_VERSION = "2.40.1"
+    const val HILT_VERSION = "2.46.1"
     const val HILT_JETPACK_VERSION = "1.0.0-alpha03"
 }
