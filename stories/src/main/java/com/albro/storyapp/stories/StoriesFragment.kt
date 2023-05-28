@@ -62,7 +62,7 @@ class StoriesFragment : Fragment(R.layout.fragment_stories) {
 
             val linearLayoutManager = LinearLayoutManager(requireActivity())
             linearLayoutManager.scrollToPosition(0)
-            rvStory?.setLayoutManager(linearLayoutManager)
+            rvStory.setLayoutManager(linearLayoutManager)
             rvStory.addVeiledItems(5)
 
             getStories()

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home">Utama</string>
+    <string name="profile">Profil</string>
+    <string name="add_story">Tambah Story</string>
+</resources>

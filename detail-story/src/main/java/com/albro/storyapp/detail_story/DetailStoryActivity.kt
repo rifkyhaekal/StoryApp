@@ -18,6 +18,7 @@ import com.albro.storyapp.detail_story.databinding.ActivityDetailStoryBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.util.Locale
 
 @AndroidEntryPoint
 class DetailStoryActivity : AppCompatActivity() {
@@ -46,7 +47,11 @@ class DetailStoryActivity : AppCompatActivity() {
                 error(com.albro.storyapp.core.R.drawable.img_error)
                 placeholder(com.albro.storyapp.core.R.drawable.ic_loading)
             }
-            tvStoryName.text = story.name.capitalize()
+            tvStoryName.text = story.name.replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase(
+                    Locale.getDefault()
+                ) else it.toString()
+            }
             tvStoryDescription.text = story.description
         }
     }

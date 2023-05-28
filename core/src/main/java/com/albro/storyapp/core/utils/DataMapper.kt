@@ -68,10 +68,10 @@ fun StoriesResponse?.mapToEntity(): ArrayList<StoryEntity> {
 
 fun StoryResponse.mapToDomain(): Story {
     return Story(
-        id = this?.loginResult?.id ?: "",
-        name = this?.loginResult?.name ?: "",
-        description = this?.loginResult?.description ?: "",
-        photoUrl = this?.loginResult?.photoUrl ?: ""
+        id = this.loginResult?.id ?: "",
+        name = this.loginResult?.name ?: "",
+        description = this.loginResult?.description ?: "",
+        photoUrl = this.loginResult?.photoUrl ?: ""
     )
 }
 

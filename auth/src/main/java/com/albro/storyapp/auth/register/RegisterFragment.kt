@@ -84,7 +84,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             Status.ERROR -> {
                 ErrorBottomSheetDialogFragment(
                     uiState.message
-                        ?: getString(R.string.something_went_wrong)
+                        ?: getString(com.albro.storyapp.core.R.string.something_went_wrong)
                 ).show(parentFragmentManager, TAG)
             }
         }

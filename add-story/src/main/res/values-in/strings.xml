@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="story_image">Story image</string>
-    <string name="camera">Camera</string>
-    <string name="gallery">Gallery</string>
-    <string name="description">Description</string>
-    <string name="permission_granted">Permission Granted, Please Try Again!</string>
-    <string name="upload">Upload</string>
-    <string name="permission_storage_request">This application cannot fully work without Storage Permission.</string>
-    <string name="upload_story_success">Upload Story Success</string>
-    <string name="something_went_wrong">Something Went Wrong</string>
+    <string name="camera">Kamera</string>
+    <string name="gallery">Galeri</string>
+    <string name="description">Deskripsi</string>
+    <string name="permission_granted">Izin Diberikan, Silakan Coba Lagi!</string>
+    <string name="upload">Unggah</string>
+    <string name="permission_storage_request">Aplikasi ini tidak dapat berfungsi sepenuhnya tanpa Izin Penyimpanan.</string>
+    <string name="upload_story_success">Unggah Story Berhasil</string>
+    <string name="something_went_wrong">Terjadi Kesalahan</string>
 </resources>

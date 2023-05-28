@@ -77,7 +77,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             }
             Status.ERROR -> {
                 ErrorBottomSheetDialogFragment(
-                    loginState.message ?: getString(R.string.something_went_wrong)
+                    loginState.message ?: getString(com.albro.storyapp.core.R.string.something_went_wrong)
                 ).show(parentFragmentManager, TAG)
             }
         }

@@ -241,14 +241,13 @@ class AddStoryFragment : Fragment(R.layout.fragment_add_story), EasyPermissions.
             }
             Status.ERROR -> {
                 ErrorBottomSheetDialogFragment(
-                    uiState.message ?: getString(R.string.something_went_wrong)
+                    uiState.message ?: getString(com.albro.storyapp.core.R.string.something_went_wrong)
                 ).show(parentFragmentManager, ErrorBottomSheetDialogFragment.TAG)
             }
         }
     }
 
     private fun navigateToStoriesFragment() {
-//        findNavController().navigate(com.albro.storyapp.core.R.id.action_navigation_add_story_to_navigation_stories)
         findNavController().navigateUp()
     }
 

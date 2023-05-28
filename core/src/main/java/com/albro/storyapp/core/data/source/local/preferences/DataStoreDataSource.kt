@@ -22,13 +22,6 @@ val Context.AppDataStore by preferencesDataStore(PREFERENCE_NAME)
 class DataStoreDataSource @Inject constructor (private val dataStore: DataStore<Preferences>):
     IDataStoreDataSource {
 
-    private object PreferenceKeys {
-        val loginStatePreferenceKey =
-            booleanPreferencesKey("com.albro.storyapp.preferences.login_state")
-        val tokenPreferenceKey =
-            stringPreferencesKey("com.albro.storyapp.preferences.token_key")
-    }
-
     override suspend fun setLoginState(state: Boolean) {
         dataStore.edit { preferences ->
             preferences[PreferenceKeys.loginStatePreferenceKey] = state
@@ -70,4 +63,11 @@ class DataStoreDataSource @Inject constructor (private val dataStore: DataStore<
         .map { value ->
             value[PreferenceKeys.tokenPreferenceKey] ?: ""
         }
+
+    private object PreferenceKeys {
+        val loginStatePreferenceKey =
+            booleanPreferencesKey("com.albro.storyapp.preferences.login_state")
+        val tokenPreferenceKey =
+            stringPreferencesKey("com.albro.storyapp.preferences.token_key")
+    }
 }
