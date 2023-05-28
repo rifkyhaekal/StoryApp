@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_navigation"
+    app:startDestination="@id/navigation_stories">
+
+    <fragment
+        android:id="@+id/navigation_stories"
+        android:name="com.albro.storyapp.stories.StoriesFragment"
+        android:label="StoriesFragment"
+        tools:layout= "@layout/fragment_stories"/>
+
+    <fragment
+        android:id="@+id/navigation_add_story"
+        android:name="com.albro.storyapp.add_story.AddStoryFragment"
+        android:label="AddStoryFragment" >
+        <action
+            android:id="@+id/action_navigation_add_story_to_navigation_stories"
+            app:destination="@id/navigation_stories" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.albro.storyapp.profile.ProfileFragment"
+        android:label="ProfileFragment" />
+
+</navigation>

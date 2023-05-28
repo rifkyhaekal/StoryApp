@@ -6,6 +6,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
 import com.albro.storyapp.core.data.mediator.StoryRemoteMediator
+import com.albro.storyapp.core.data.source.local.preferences.IDataStoreDataSource
 import com.albro.storyapp.core.data.source.local.room.StoryDatabase
 import com.albro.storyapp.core.data.source.remote.RemoteDataSource
 import com.albro.storyapp.core.data.source.remote.network.ApiService
@@ -13,6 +14,7 @@ import com.albro.storyapp.core.domain.models.Story
 import com.albro.storyapp.core.domain.models.UploadStory
 import com.albro.storyapp.core.domain.repositories.IStoryRepository
 import com.albro.storyapp.core.data.source.remote.network.ApiResponse
+import com.albro.storyapp.core.data.source.remote.responses.StoryResponse
 import com.albro.storyapp.core.utils.UiState
 import com.albro.storyapp.core.utils.mapToDomain
 import com.albro.storyapp.core.utils.toMultipartBody
@@ -29,25 +31,8 @@ import javax.inject.Singleton
 class StoryRepository @Inject constructor(
     private val storyDatabase: StoryDatabase,
     private val remoteDataSource: RemoteDataSource,
-    private val apiService: ApiService
+    private val apiService: ApiService,
 ) : IStoryRepository {
-
-    @OptIn(ExperimentalPagingApi::class)
-    override fun getStories(token: String): Flow<PagingData<Story>> {
-        return Pager(
-            config = PagingConfig(
-                pageSize = NETWORK_PAGE_SIZE
-            ),
-            remoteMediator = StoryRemoteMediator(storyDatabase, apiService, "Bearer $token"),
-            pagingSourceFactory = {
-                storyDatabase.storyDao().getStories()
-            }
-        ).flow.map { pagingData ->
-            pagingData.map { storyEntity ->
-                storyEntity.mapToDomain()
-            }
-        }
-    }
 
     override fun postStory(
         token: String,
@@ -81,6 +66,22 @@ class StoryRepository @Inject constructor(
         }
     }
 
+    @OptIn(ExperimentalPagingApi::class)
+    override fun getStories(token: String): Flow<PagingData<Story>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = NETWORK_PAGE_SIZE
+            ),
+            remoteMediator = StoryRemoteMediator(storyDatabase, apiService, "Bearer $token"),
+            pagingSourceFactory = {
+                storyDatabase.storyDao().getStories()
+            }
+        ).flow.map { pagingData ->
+            pagingData.map { storyEntity ->
+                storyEntity.mapToDomain()
+            }
+        }
+    }
 
     private companion object {
         const val NETWORK_PAGE_SIZE = 5

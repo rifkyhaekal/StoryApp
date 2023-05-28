@@ -5,5 +5,5 @@ import com.albro.storyapp.core.domain.models.Story
 import kotlinx.coroutines.flow.Flow
 
 interface GetStoriesUseCase {
-    suspend fun invoke(token: String): Flow<PagingData<Story>>
+    suspend operator fun invoke(token: String): Flow<PagingData<Story>>
 }

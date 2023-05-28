@@ -5,6 +5,7 @@ import com.albro.storyapp.core.data.source.remote.responses.LoginResponse
 import com.albro.storyapp.core.data.source.remote.responses.PostStoryResponse
 import com.albro.storyapp.core.data.source.remote.responses.RegisterResponse
 import com.albro.storyapp.core.data.source.remote.responses.StoriesResponse
+import com.albro.storyapp.core.data.source.remote.responses.StoryResponse
 import com.albro.storyapp.core.domain.models.Login
 import com.albro.storyapp.core.domain.models.Register
 import com.albro.storyapp.core.domain.models.Story
@@ -63,4 +64,22 @@ fun StoriesResponse?.mapToEntity(): ArrayList<StoryEntity> {
         )
     }
     return stories
+}
+
+fun StoryResponse.mapToDomain(): Story {
+    return Story(
+        id = this?.loginResult?.id ?: "",
+        name = this?.loginResult?.name ?: "",
+        description = this?.loginResult?.description ?: "",
+        photoUrl = this?.loginResult?.photoUrl ?: ""
+    )
+}
+
+fun Story.mapToEntity(): StoryEntity {
+    return StoryEntity(
+        id = this.id,
+        name = this.name,
+        description = this.description,
+        photoUrl = this.photoUrl
+    )
 }

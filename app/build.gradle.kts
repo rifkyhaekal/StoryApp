@@ -54,6 +54,9 @@ android {
 dependencies {
     implementation(project(":core"))
     implementation(project(":auth"))
+    implementation(project(":home"))
+    implementation(project(":stories"))
+    implementation(project(":detail-story"))
     testImplementation(Dependencies.Paging.pagingKtx)
     androidTestImplementation(Dependencies.Paging.pagingKtx)
     androidTestImplementation(Dependencies.Paging.pagingKtx)

@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 
 data class StoriesResponse (
     @Json(name="listStory")
-    val listStory: ArrayList<ListStoryItem?>? = null,
+    val listStory: List<ListStoryItem?>? = null,
 
     @Json(name="error")
     val error: Boolean? = null,

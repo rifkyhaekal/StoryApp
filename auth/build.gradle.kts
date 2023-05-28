@@ -44,5 +44,6 @@ android {
 
 dependencies {
     implementation(project(":core"))
+    implementation(project(":home"))
     commonAndroidLibrary()
 }

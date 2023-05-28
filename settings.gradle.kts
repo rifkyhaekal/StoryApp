@@ -1,5 +1,8 @@
 @file:Suppress("UnstableApiUsage")
 
+include(":profile")
+
+
 pluginManagement {
     repositories {
         gradlePluginPortal()
@@ -21,3 +24,7 @@ rootProject.name = "StoryApp"
 include(":app")
 include(":core")
 include(":auth")
+include(":detail-story")
+include(":add-story")
+include(":stories")
+include(":home")

@@ -1,0 +1,5 @@
+<resources>
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="add_story">Add Story</string>
+</resources>

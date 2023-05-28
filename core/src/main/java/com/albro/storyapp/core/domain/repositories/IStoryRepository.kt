@@ -8,13 +8,14 @@ import kotlinx.coroutines.flow.Flow
 import java.io.File
 
 interface IStoryRepository {
-    fun getStories(
-        token: String,
-    ): Flow<PagingData<Story>>
 
     fun postStory(
         token: String,
         description: String,
         imgStory: File,
     ): Flow<UiState<UploadStory>>
+
+    fun getStories(
+        token: String,
+    ): Flow<PagingData<Story>>
 }

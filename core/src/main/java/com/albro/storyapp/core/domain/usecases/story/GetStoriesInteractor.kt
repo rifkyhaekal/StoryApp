@@ -7,8 +7,7 @@ import com.albro.storyapp.core.domain.usecases.story.interfaces.GetStoriesUseCas
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetStoriesInteractor @Inject constructor(private val storyRepository: StoryRepository) :
-    GetStoriesUseCase {
+class GetStoriesInteractor @Inject constructor(private val storyRepository: StoryRepository) : GetStoriesUseCase {
     override suspend fun invoke(token: String): Flow<PagingData<Story>> =
         storyRepository.getStories(token)
 }

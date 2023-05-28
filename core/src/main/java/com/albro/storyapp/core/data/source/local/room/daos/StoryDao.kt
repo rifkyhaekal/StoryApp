@@ -6,15 +6,16 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.albro.storyapp.core.data.source.local.entity.StoryEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface StoryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertStories(quote: List<StoryEntity>)
 
-    @Query("SELECT * FROM stories")
-    fun getStories(): PagingSource<Int, StoryEntity>
-
     @Query("DELETE FROM stories")
     suspend fun deleteStories()
+
+    @Query("SELECT * FROM stories")
+    fun getStories(): PagingSource<Int, StoryEntity>
 }

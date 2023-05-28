@@ -5,6 +5,7 @@ import com.albro.storyapp.core.data.source.remote.responses.LoginResponse
 import com.albro.storyapp.core.data.source.remote.responses.PostStoryResponse
 import com.albro.storyapp.core.data.source.remote.responses.RegisterResponse
 import com.albro.storyapp.core.data.source.remote.network.ApiResponse
+import com.albro.storyapp.core.data.source.remote.responses.StoryResponse
 import com.albro.storyapp.core.utils.getErrorMessage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -12,6 +13,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import okhttp3.RequestBody
 import retrofit2.HttpException
+import timber.log.Timber
 import java.io.IOException
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -56,7 +58,7 @@ class RemoteDataSource @Inject constructor (private val apiService: ApiService) 
     ): Flow<ApiResponse<PostStoryResponse?>> =
         flow {
             try {
-                val response = apiService.uploadStory(token, requestBody)
+                val response = apiService.uploadStory("Bearer $token", requestBody)
                 if (response.isSuccessful) {
                     emit(ApiResponse.Success(response.body()))
                 } else {

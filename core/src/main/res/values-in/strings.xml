@@ -6,4 +6,5 @@
     <string name="invalid_email">Email invalid!</string>
     <string name="invalid_password">Password invalid!</string>
     <string name="error">Sorry, occur some error.</string>
+    <string name="detail">Detail</string>
 </resources>

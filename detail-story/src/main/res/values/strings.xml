@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="back">Back</string>
+    <string name="story_image">Story image</string>
+    <string name="something_went_wrong">Something went wrong</string>
+</resources>
