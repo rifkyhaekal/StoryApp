@@ -3,4 +3,5 @@
     <string name="home">Utama</string>
     <string name="profile">Profil</string>
     <string name="add_story">Tambah Story</string>
+    <string name="stories_location">Lokasi Stories</string>
 </resources>

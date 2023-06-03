@@ -7,4 +7,7 @@
     <string name="upload">Upload</string>
     <string name="permission_storage_request">This application cannot fully work without Storage Permission.</string>
     <string name="upload_story_success">Upload Story Success</string>
+    <string name="add_your_location">Add your location? (Optional)</string>
+    <string name="locate_me">Locate me</string>
+    <string name="permission_location_request">You can\'t input your location without Location Permission</string>
 </resources>

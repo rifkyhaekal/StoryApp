@@ -45,5 +45,6 @@ android {
 dependencies {
     implementation(project(":core"))
     implementation(Dependencies.Permission.easyPermissionKtx)
+    implementation(Dependencies.GoogleMaps.googleMapsLocation)
     commonAndroidLibrary()
 }

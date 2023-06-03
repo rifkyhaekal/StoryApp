@@ -31,7 +31,9 @@ class AddStoryViewModel @Inject constructor(private val getUserTokenUseCase: Get
         token: String,
         description: String,
         imgStory: File,
+        lat: Double? = null,
+        lon: Double? = null
     ): LiveData<UiState<UploadStory>> {
-        return postStoryUseCase(token, description, imgStory).asLiveData()
+        return postStoryUseCase(token, description, imgStory, lat, lon).asLiveData()
     }
 }

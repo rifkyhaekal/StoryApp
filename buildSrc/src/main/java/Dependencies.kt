@@ -132,4 +132,9 @@ object Dependencies {
     object Logging {
         const val timber = "com.jakewharton.timber:timber:4.7.1"
     }
+
+    object GoogleMaps {
+        const val googleMaps = "com.google.android.gms:play-services-maps:18.0.2"
+        const val googleMapsLocation = "com.google.android.gms:play-services-location:20.0.0"
+    }
 }

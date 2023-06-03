@@ -25,4 +25,9 @@
         android:name="com.albro.storyapp.profile.ProfileFragment"
         android:label="ProfileFragment" />
 
+    <fragment
+        android:id="@+id/navigation_map"
+        android:name="com.albro.storyapp.map_story.MapStoryFragment"
+        android:label="MapStoryFragment" />
+
 </navigation>

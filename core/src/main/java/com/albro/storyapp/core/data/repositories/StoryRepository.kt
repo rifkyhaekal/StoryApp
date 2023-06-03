@@ -6,15 +6,13 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
 import com.albro.storyapp.core.data.mediator.StoryRemoteMediator
-import com.albro.storyapp.core.data.source.local.preferences.IDataStoreDataSource
 import com.albro.storyapp.core.data.source.local.room.StoryDatabase
 import com.albro.storyapp.core.data.source.remote.RemoteDataSource
+import com.albro.storyapp.core.data.source.remote.network.ApiResponse
 import com.albro.storyapp.core.data.source.remote.network.ApiService
 import com.albro.storyapp.core.domain.models.Story
 import com.albro.storyapp.core.domain.models.UploadStory
 import com.albro.storyapp.core.domain.repositories.IStoryRepository
-import com.albro.storyapp.core.data.source.remote.network.ApiResponse
-import com.albro.storyapp.core.data.source.remote.responses.StoryResponse
 import com.albro.storyapp.core.utils.UiState
 import com.albro.storyapp.core.utils.mapToDomain
 import com.albro.storyapp.core.utils.toMultipartBody
@@ -38,11 +36,15 @@ class StoryRepository @Inject constructor(
         token: String,
         description: String,
         imgStory: File,
+        lat: Double?,
+        lon: Double?,
     ): Flow<UiState<UploadStory>> {
         val requestBody = MultipartBody.Builder()
             .setType(MultipartBody.FORM)
             .addFormDataPart("description", description)
             .addPart(imgStory.toMultipartBody("photo"))
+            .addFormDataPart("lat", lat.toString())
+            .addFormDataPart("lon", lon.toString())
             .build()
 
         return flow {
@@ -79,6 +81,23 @@ class StoryRepository @Inject constructor(
         ).flow.map { pagingData ->
             pagingData.map { storyEntity ->
                 storyEntity.mapToDomain()
+            }
+        }
+    }
+
+    override fun getAllWithStories(token: String): Flow<UiState<ArrayList<Story>>> = flow {
+        remoteDataSource.getStoriesWithLocation("Bearer $token").onStart {
+            emit(UiState.loading())
+        }.collect { response ->
+            emit(UiState.hideLoading())
+            when (response) {
+                is ApiResponse.Success -> {
+                    emit(UiState.success(response.data.mapToDomain()))
+                }
+
+                is ApiResponse.Error -> {
+                    emit(UiState.error(message = response.errorMessage))
+                }
             }
         }
     }

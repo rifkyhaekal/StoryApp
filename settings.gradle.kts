@@ -1,5 +1,8 @@
 @file:Suppress("UnstableApiUsage")
 
+include(":map-story")
+
+
 include(":profile")
 
 

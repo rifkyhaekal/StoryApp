@@ -15,4 +15,6 @@ data class StoryEntity(
     val name: String,
     val description: String,
     val photoUrl: String,
+    val lat: Double? = null,
+    val lon: Double? = null
 ) : Parcelable

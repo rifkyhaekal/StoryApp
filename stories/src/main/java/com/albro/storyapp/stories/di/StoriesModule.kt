@@ -1,7 +1,5 @@
 package com.albro.storyapp.stories.di
 
-import com.albro.storyapp.core.domain.usecases.auth.GetUserTokenInteractor
-import com.albro.storyapp.core.domain.usecases.auth.interfaces.GetUserTokenUseCase
 import com.albro.storyapp.core.domain.usecases.story.GetStoriesInteractor
 import com.albro.storyapp.core.domain.usecases.story.interfaces.GetStoriesUseCase
 import dagger.Binds

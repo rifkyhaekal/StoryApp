@@ -49,5 +49,6 @@ dependencies {
     implementation(project(":detail-story"))
     implementation(project(":add-story"))
     implementation(project(":profile"))
+    implementation(project(":map-story"))
     commonAndroidLibrary()
 }

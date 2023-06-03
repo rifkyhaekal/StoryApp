@@ -9,4 +9,7 @@
     <string name="permission_storage_request">Aplikasi ini tidak dapat berfungsi sepenuhnya tanpa Izin Penyimpanan.</string>
     <string name="upload_story_success">Unggah Story Berhasil</string>
     <string name="something_went_wrong">Terjadi Kesalahan</string>
+    <string name="add_your_location">Tambahkan lokasimu? (Opsional)</string>
+    <string name="locate_me">Cari lokasi saya</string>
+    <string name="permission_location_request">Anda tidak dapat memasukkan lokasi Anda tanpa Izin Lokasi</string>
 </resources>

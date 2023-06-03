@@ -4,14 +4,12 @@ import com.albro.storyapp.core.data.source.remote.responses.LoginResponse
 import com.albro.storyapp.core.data.source.remote.responses.PostStoryResponse
 import com.albro.storyapp.core.data.source.remote.responses.RegisterResponse
 import com.albro.storyapp.core.data.source.remote.responses.StoriesResponse
-import com.albro.storyapp.core.data.source.remote.responses.StoryResponse
 import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
@@ -39,9 +37,8 @@ interface ApiService {
         @Query("location") location: Int = 0
     ): Response<StoriesResponse>
 
-    @GET("stories/{id}")
-    suspend fun getStory(
-        @Header("Authorization") token: String,
-        @Path("id") id: String,
-    ): Response<StoryResponse>
+    @GET("stories?location=1")
+    suspend fun getStoriesWithLocation(
+        @Header("Authorization") token: String
+    ): Response<StoriesResponse>
 }

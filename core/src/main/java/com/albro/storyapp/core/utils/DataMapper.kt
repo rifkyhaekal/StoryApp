@@ -5,7 +5,6 @@ import com.albro.storyapp.core.data.source.remote.responses.LoginResponse
 import com.albro.storyapp.core.data.source.remote.responses.PostStoryResponse
 import com.albro.storyapp.core.data.source.remote.responses.RegisterResponse
 import com.albro.storyapp.core.data.source.remote.responses.StoriesResponse
-import com.albro.storyapp.core.data.source.remote.responses.StoryResponse
 import com.albro.storyapp.core.domain.models.Login
 import com.albro.storyapp.core.domain.models.Register
 import com.albro.storyapp.core.domain.models.Story
@@ -32,6 +31,8 @@ fun StoriesResponse?.mapToDomain(): ArrayList<Story> {
                 storyItem?.name ?: "",
                 storyItem?.description ?: "",
                 storyItem?.photoUrl ?: "",
+                storyItem?.lat,
+                storyItem?.lon,
             )
         )
     }
@@ -47,7 +48,9 @@ fun StoryEntity.mapToDomain(): Story {
         id = this.id,
         name = this.name,
         description = this.description,
-        photoUrl = this.photoUrl
+        photoUrl = this.photoUrl,
+        lat = this.lat,
+        lon = this.lon
     )
 }
 
@@ -60,19 +63,13 @@ fun StoriesResponse?.mapToEntity(): ArrayList<StoryEntity> {
                 storyItem?.name ?: "",
                 storyItem?.description ?: "",
                 storyItem?.photoUrl ?: "",
+                storyItem?.lat,
+                storyItem?.lon
             )
         )
     }
-    return stories
-}
 
-fun StoryResponse.mapToDomain(): Story {
-    return Story(
-        id = this.loginResult?.id ?: "",
-        name = this.loginResult?.name ?: "",
-        description = this.loginResult?.description ?: "",
-        photoUrl = this.loginResult?.photoUrl ?: ""
-    )
+    return stories
 }
 
 fun Story.mapToEntity(): StoryEntity {
@@ -80,6 +77,8 @@ fun Story.mapToEntity(): StoryEntity {
         id = this.id,
         name = this.name,
         description = this.description,
-        photoUrl = this.photoUrl
+        photoUrl = this.photoUrl,
+        lat = this.lat,
+        lon = this.lon
     )
 }

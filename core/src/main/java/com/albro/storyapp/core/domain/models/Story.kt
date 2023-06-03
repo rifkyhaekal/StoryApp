@@ -5,4 +5,6 @@ data class Story(
     val name: String,
     val description: String,
     val photoUrl: String,
+    val lat: Double?,
+    val lon: Double?
 )

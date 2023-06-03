@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/detail-story" />
             <option value="$PROJECT_DIR$/home" />
+            <option value="$PROJECT_DIR$/map-story" />
             <option value="$PROJECT_DIR$/profile" />
             <option value="$PROJECT_DIR$/stories" />
           </set>

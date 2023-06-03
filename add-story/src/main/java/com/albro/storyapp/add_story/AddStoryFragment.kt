@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -31,12 +32,15 @@ import com.albro.storyapp.core.utils.createCustomTempFile
 import com.albro.storyapp.core.utils.reduceFileImage
 import com.albro.storyapp.core.utils.rotateBitmap
 import com.albro.storyapp.core.utils.uriToFile
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.shashank.sony.fancytoastlib.FancyToast
 import com.vmadalin.easypermissions.EasyPermissions
 import com.vmadalin.easypermissions.dialogs.SettingsDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.io.File
+import java.util.Locale
 
 @AndroidEntryPoint
 class AddStoryFragment : Fragment(R.layout.fragment_add_story), EasyPermissions.PermissionCallbacks {
@@ -50,10 +54,14 @@ class AddStoryFragment : Fragment(R.layout.fragment_add_story), EasyPermissions.
     private lateinit var launcherIntentGallery: ActivityResultLauncher<Intent>
     private lateinit var currentPhotoPath: String
     private var myImgStory: File? = null
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private var lat: Double? = null
+    private var lng: Double? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
         initCameraIntent()
         initGalleryIntent()
         initViews()
@@ -74,6 +82,14 @@ class AddStoryFragment : Fragment(R.layout.fragment_add_story), EasyPermissions.
                     startGallery()
                 } else {
                     requestStoragePermission()
+                }
+            }
+
+            btnLocateMe.setOnClickListener {
+                if (hasLocationPermission()) {
+                    getLocation()
+                } else {
+                    requestLocationPermission()
                 }
             }
 
@@ -137,7 +153,6 @@ class AddStoryFragment : Fragment(R.layout.fragment_add_story), EasyPermissions.
         launcherIntentGallery.launch(chooser)
     }
 
-    @SuppressLint("QueryPermissionsNeeded")
     private fun startCamera() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         intent.resolveActivity(requireActivity().packageManager)
@@ -213,7 +228,7 @@ class AddStoryFragment : Fragment(R.layout.fragment_add_story), EasyPermissions.
 
     private fun uploadStory(description: String, img: File) {
         viewModel.tokenKey().observe(requireActivity()) {
-            viewModel.uploadStory(it, description, img).observe(
+            viewModel.uploadStory(it, description, img, lat, lng).observe(
                 requireActivity(),
                 ::manageUploadStoryResponse
             )
@@ -247,6 +262,48 @@ class AddStoryFragment : Fragment(R.layout.fragment_add_story), EasyPermissions.
         }
     }
 
+    private fun hasLocationPermission() =
+        EasyPermissions.hasPermissions(
+            requireContext(),
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        )
+
+    private fun requestLocationPermission() {
+        EasyPermissions.requestPermissions(
+            this,
+            getString(R.string.permission_location_request),
+            REQUEST_LOCATION_PERMISSION,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+        )
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun getLocation() {
+        fusedLocationProviderClient.lastLocation.addOnSuccessListener { location ->
+            location?.let {
+                lat = location.latitude
+                lng = location.longitude
+                binding.tvLatLon.text = getAddress(lat as Double, lng as Double)
+            }
+        }.addOnFailureListener {
+            FancyToast.makeText(
+                requireContext(),
+                it.message,
+                FancyToast.LENGTH_SHORT,
+                FancyToast.ERROR,
+                false
+            )
+        }
+    }
+
+    private fun getAddress(latitude: Double, longitude: Double): String {
+        val myGeoCoder = Geocoder(requireActivity(), Locale.getDefault())
+        val getAddress = myGeoCoder.getFromLocation(latitude, longitude, 1)
+        return getAddress?.get(0)?.getAddressLine(0) ?: "Unknown"
+    }
+
     private fun navigateToStoriesFragment() {
         findNavController().navigateUp()
     }
@@ -254,5 +311,6 @@ class AddStoryFragment : Fragment(R.layout.fragment_add_story), EasyPermissions.
     companion object {
         private const val REQUEST_CAMERA_PERMISSION = 1
         private const val REQUEST_STORAGE_PERMISSION = 2
+        private const val REQUEST_LOCATION_PERMISSION = 3
     }
 }

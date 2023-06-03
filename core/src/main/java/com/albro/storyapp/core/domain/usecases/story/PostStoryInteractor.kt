@@ -13,6 +13,8 @@ class PostStoryInteractor @Inject constructor(private val storyRepository: Story
     override fun invoke(
         token: String,
         description: String,
-        imgStory: File
-    ): Flow<UiState<UploadStory>> = storyRepository.postStory(token, description, imgStory)
+        imgStory: File,
+        lat: Double?,
+        lon: Double?
+    ): Flow<UiState<UploadStory>> = storyRepository.postStory(token, description, imgStory, lat, lon)
 }
